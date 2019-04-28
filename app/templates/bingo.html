@@ -16,8 +16,6 @@
         {% endfor %}
     </div>
 
-    <div class="clear">&nbsp;</div>
-
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
         <input type="hidden" name="business" value="jmaroeder@gmail.com">
         <input type="hidden" name="cmd" value="_xclick">
@@ -39,6 +37,9 @@
             </div>
         </div>
     </form>
+    <div class="clear">&nbsp;</div>
+    <h3>Current Prize: {% include 'prize.txt' %} <small>(Note: manually updated, may be out of date)</small></h3>
+
     <div class="clear">&nbsp;</div>
     <h3>Rules &amp; Conditions</h3>
     <ol>
