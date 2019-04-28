@@ -37,10 +37,9 @@ CHARACTERS = {
             '"Dolorous Edd" Tollett',
             'Drogon (Dragon)',
             'Rhaegel (Dragon)',
-            'Viserion (Dragon)',
             'Ghost',
+            'Nymeria',
             'Little Sam',
-            'Qhono',
         ]
     }
 }

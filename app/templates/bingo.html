@@ -1,21 +1,16 @@
 {% extends 'base.html' %}
 
 {% block app_content %}
-<h2>Season {{ season }}, episode {{ episode }}</h2>
+<h2>{% if season == 8 and episode == 3 %}Battle of Winterfell{% else %}Season {{ season }}, episode {{ episode }}{% endif %} Death Bingo</h2>
 
 <div class="square-container">
     {% for row in range(5) %}
-{#        <div class="row row-eq-height">#}
         {% for col in range(5) %}
-{#            {% if col == 0 %}<div class="col-xs-2 col-xs-offset-1 bingo-square">{% else %}<div class="col-xs-2">{% endif %}#}
             <div class="square"><div class="content">
                 {{ card[(row, col)] }}
             </div></div>
-{#            </div>#}
         {% endfor %}
-{#        </div>#}
     {% endfor %}
-    <div class="row"></div>
 </div>
 
 
