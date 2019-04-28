@@ -1,34 +1,87 @@
 {% extends 'base.html' %}
 
 {% block app_content %}
-<h2>{% if season == 8 and episode == 3 %}Battle of Winterfell{% else %}Season {{ season }}, episode {{ episode }}{% endif %} Death Bingo</h2>
+    <h2>{% if season == 8 and episode == 3 %}Battle of Winterfell{% else %}Season {{ season }}, episode
+        {{ episode }}{% endif %} Death Bingo</h2>
 
-<div class="square-container">
-    {% for row in range(5) %}
-        {% for col in range(5) %}
-            <div class="square"><div class="content">
-                {{ card[(row, col)] }}
-            </div></div>
+    <div class="square-container">
+        {% for row in range(5) %}
+            {% for col in range(5) %}
+                <div class="square{% if card[(row, col)] == 'FREE' %} clicked{% endif %}">
+                    <div class="content">
+                        {{ card[(row, col)] }}
+                    </div>
+                </div>
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
-</div>
-
-
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-    <input type="hidden" name="business" value="jmaroeder@gmail.com">
-    <input type="hidden" name="cmd" value="_xclick">
-    <input type="hidden" name="on0" value="seed">
-    <input type="hidden" name="amount" value="5.00">
-    <input type="hidden" name="currency_code" value="USD">
-    <input type="hidden" name="item_name" value="Buy In">
-    <input type="hidden" name="os0" value="{{ seed }}">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-6"><a href="{{ url_for('bingo', season=season, episode=episode) }}" class="btn btn-default">Try another card</a></div>
-            <div class="col-xs-6"><button class="btn btn-default">Buy in with this card</button></div>
-        </div>
     </div>
-</form>
 
-<small style="padding-top: 200px">Made with ♥</small>
+    <div class="clear">&nbsp;</div>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="business" value="jmaroeder@gmail.com">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="amount" value="5.00">
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="item_name" value="Buy In">
+        <input type="hidden" name="on0" value="card">
+        <input type="hidden" name="os0" value="{{ request.url }}">
+        <input type="hidden" name="no_shipping" value="1">
+        <input type="hidden" name="return" value="{{ request.url }}">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6"><a href="{{ url_for('bingo', season=season, episode=episode) }}"
+                                         class="btn btn-default">Try another card</a></div>
+                <div class="col-sm-6">
+                    <button class="btn btn-default">Buy in with this card</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="clear">&nbsp;</div>
+    <h3>Rules &amp; Conditions</h3>
+    <ol>
+        <li>One entry per person. A winning bingo counts as one horizontal, vertical, or diagonal line on the card.</li>
+        <li>Becoming a wight/white walker is considered "dead" for the purposes of this game.</li>
+        <li>Your bingo card will only be locked in once you have paid the entry fee. If you lose the link to your card
+            once you have paid, text Emily or James and they will send you the card link.
+        </li>
+        <li>Entries must be paid for by 8:59pm EST (before the episode airs). Entries will not be accepted once the
+            episode has begun. If you try, your money will be refunded.
+        </li>
+        <li>There will be one prize; the prize will be split evenly amongst winners in the event of a tie. The total
+            prize value will be the sum of all entry fees minus the Golden Company (PayPal)’s fees.
+        </li>
+        <li>Winner(s) have 24 hours from the episode’s completion to announce their bingo. The game will close at
+            10:00pm EST on Monday, April 29th and the prize(s) will be awarded via the Golden Company (PayPal) shortly
+            after. Winner(s) will be announced on this page at that time.
+        </li>
+        <li>If you have a bingo, please note the timestamp in the episode of the last character’s death that completes
+            your line and text it to Emily or James following the word “BINGO”. The winner(s) will be determined by the
+            order of the character deaths in the episode, NOT by real time. This allows for fairness for the people who
+            cannot watch the episode as it airs.
+        </li>
+        <li>Feel free to share this link to your friends who want to play! If they do not know Emily or James, please
+            pass on our phone number(s) so they can announce their bingo.
+        </li>
+        <li>In the event that no one has any bingos, the prize(s) will go to whoever’s card has the most overall
+            deaths.
+        </li>
+    </ol>
+
+    <div class="clear">&nbsp;</div>
+    <div>
+        <p>
+            <small>Made with ♥</small>
+        </p>
+        <p>
+            <small>Source at <a href="https://github.com/jmaroeder/bingo">GitHub</a></small>
+        </p>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 {% endblock %}

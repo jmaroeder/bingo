@@ -44,6 +44,15 @@
     align-self: flex-end;
 }
 
+.square.clickable {
+    cursor: pointer;
+}
+
+.square.clicked {
+    background-color: #333333;
+    color: #aaaaaa;
+}
+
 
 
 @media (min-width: 768px) {

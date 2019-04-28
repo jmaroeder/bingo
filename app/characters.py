@@ -6,7 +6,6 @@ CHARACTERS = {
             'Qyburn',
             'Melisandre',
             'Beric Dondarrion',
-            'The Night King',
             'Jorah Mormont',
             'Grey Worm',
             'Theon Greyjoy',
