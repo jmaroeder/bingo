@@ -1,6 +1,7 @@
 .square-container {
     display: flex;
     flex-wrap: wrap;
+    min-width: 480px;
 }
 
 .square {
