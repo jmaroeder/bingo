@@ -16,6 +16,12 @@
         {% endfor %}
     </div>
 
+    <div><ul>
+        {% for link in cards %}
+            <li><a href="{{ link }}">{{ link }}</a></li>
+        {% endfor %}
+    </ul></div>
+
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
         <input type="hidden" name="business" value="jmaroeder@gmail.com">
         <input type="hidden" name="cmd" value="_xclick">

@@ -4,6 +4,17 @@ from flask import render_template, request, redirect, url_for
 from . import app
 from .characters import CHARACTERS
 
+CARDS = [
+    'https://bingo.jroeder.net/s8e3?seed=3352187377',
+    'https://bingo.jroeder.net/s8e3?seed=2615856463',
+    'https://bingo.jroeder.net/s8e3?seed=878604957',
+    'https://bingo.jroeder.net/s8e3?seed=599550743',
+    'https://bingo.jroeder.net/s8e3?seed=2838505818',
+    'https://bingo.jroeder.net/s8e3?seed=2649536513',
+    'https://bingo.jroeder.net/s8e3?seed=160705293',
+]
+
+
 
 @app.route('/')
 def episode_picker():
@@ -30,4 +41,4 @@ def bingo(season: str, episode: str):
                 pool.remove(pick)
 
             card[row, col] = pick
-    return render_template('bingo.html', season=season, episode=episode, card=card, seed=seed)
+    return render_template('bingo.html', season=season, episode=episode, card=card, seed=seed, cards=CARDS)
